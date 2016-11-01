@@ -16,8 +16,8 @@ public class ScoreController : MonoBehaviour {
 	
 
 	void Update () {
-
 		UpdateScore ();
+
 		//if player.tag=realtor, do something, +score
 
 
