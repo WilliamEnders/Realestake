@@ -4,46 +4,44 @@ using System.Collections;
 public class playerController : MonoBehaviour {
 
 	public Rigidbody rb;
-	public float moveSpeed = 10f;
-	public float jumpHeight = 1000f;
+	public float moveSpeed;
+	public float jumpHeight;
 	public SpriteRenderer sr;
-	//float xScale;
+	public Animator anim;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		sr = GetComponent<SpriteRenderer> ();
-		//xScale = transform.localScale.x;
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		/*if (Input.GetAxis ("Horizontal") < 0) {
+		if (Input.GetAxis ("Horizontal") < 0) {
 			sr.flipX = true;
 		}
 		if (Input.GetAxis ("Horizontal") > 0) {
 			sr.flipX = false;
-		}*/
-
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
-
-		Vector3 movement = new Vector3 (moveHorizontal, 0f, moveVertical);
-		rb.velocity = movement * moveSpeed;
-
-		/*if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis ("Horizontal") < 0) {
-			float moveX = Input.GetAxis ("Horizontal");
-			rb.velocity = new Vector2 (moveX * moveSpeed, rb.velocity.y);
 		}
 
-		if(Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical") < 0){
-			float moveZ = Input.GetAxis ("Vertical");
-			rb.velocity = new Vector2 */
+		Vector2 move = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")) * moveSpeed;
+		Vector3 movement = new Vector3 (move.x, rb.velocity.y, move.y);
+		rb.velocity = movement;
+
+		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0) {
+			anim.SetBool ("Walk", true);
+		}else if (Input.GetAxis ("Vertical") > 0 || Input.GetAxis ("Vertical") < 0) {
+			anim.SetBool ("Walk", true);
+		}else{ 
+			anim.SetBool ("Walk", false);
+		}
 		 
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			rb.velocity = new Vector2 (rb.velocity.x, 0);
-			rb.AddForce (new Vector2 (0, jumpHeight));
-			print ("jump");
-		}
+		/*if (Input.GetKeyDown(KeyCode.Space)) {
+			rb.AddForce (Vector3.up * jumpHeight);
+			anim.SetBool ("Jump", true);
+		} else {
+			anim.SetBool ("Jump", false);
+		}*/
 	}
 }
