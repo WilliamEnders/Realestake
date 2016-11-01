@@ -9,7 +9,7 @@ public class roomManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		peopleInRoom = 0;
 	}
 	
 	// Update is called once per frame
@@ -27,7 +27,9 @@ public class roomManager : MonoBehaviour {
 	void OnTriggerExit(Collider info){
 		if(info.CompareTag("Player")){
 			peopleInRoom--;
+			if(peopleInRoom == 0){
 			WallTransparent (false);
+			}
 		}
 	}
 
