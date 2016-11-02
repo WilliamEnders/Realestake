@@ -12,12 +12,12 @@ public class objectHealthScript : MonoBehaviour {
 
 
 	void Start () {
-		objectBroken = true; //remove this once the randomization system is in place
+		//objectBroken = true; //remove this once the randomization system is in place
 	}
 	
 
 	void Update () {
-	
+		print ("Object is broken: " + objectBroken);
 	}
 
 	void OnTriggerStay(Collider other){
