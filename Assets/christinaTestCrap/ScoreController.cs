@@ -18,14 +18,7 @@ public class ScoreController : MonoBehaviour {
 	void Update () {
 		UpdateScore ();
 
-		//if player.tag=realtor, do something, +score
-
-
-		//if player.tag=vampire, do something, -score
-
-
-
-		//housescore = 0-100; Cap it so can't collect h	igher or lower (feel free to remove for balance)
+		//housescore = 0-100; Cap it so can't collect higher or lower (feel free to remove for balance)
 		if (houseHealth > 100f){
 			houseHealth = 100f;
 		}
