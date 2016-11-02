@@ -12,12 +12,13 @@ public class objectHealthScript : MonoBehaviour {
 
 
 	void Start () {
-		//objectBroken = true; //remove this once the randomization system is in place
+
 	}
 	
 
 	void Update () {
-		print ("Object is broken: " + objectBroken);
+		//print ("Object is broken: " + objectBroken);
+		TempBrokenIndicator();
 	}
 
 	void OnTriggerStay(Collider other){
@@ -55,6 +56,15 @@ public class objectHealthScript : MonoBehaviour {
 		}
 
 
+	
+	}
+
+	void TempBrokenIndicator(){
+		if (objectBroken == true) {
+			gameObject.GetComponent<Renderer>().material.color = Color.red;
+		} else {
+			gameObject.GetComponent<Renderer>().material.color = Color.white;
+		}
 	
 	}
 

@@ -23,10 +23,12 @@ public class objectController : MonoBehaviour {
 
 
 		//for (int i = 1; i < repObjCount; i++) {
+
 			//if object is broken
 		repObjects = GameObject.FindGameObjectsWithTag ("repObject");
 
 		//Debug.Log (repObjects.Length);
+
 		//}
 
 		foreach(GameObject repairObj in repObjects)
