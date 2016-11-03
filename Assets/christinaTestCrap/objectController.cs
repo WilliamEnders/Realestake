@@ -67,7 +67,7 @@ public class objectController : MonoBehaviour {
 
 
 				if (randomNumber <= breakPercent) {
-					repairObj.GetComponent<objectHealthScript> ().objectBroken = true;
+					repairObj.GetComponent<objectHealthScript> ().BreakObject ();
 
 
 					Debug.Log ("object broken: " + randomNumber);

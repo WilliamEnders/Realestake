@@ -6,7 +6,7 @@ public class playerController : MonoBehaviour {
 
 	public int playerId = 0;
 	public Player player;
-
+	public int stunNum;
 	public Rigidbody rb;
 	public float moveSpeed;
 	public float jumpHeight;
@@ -50,4 +50,23 @@ public class playerController : MonoBehaviour {
 		}
 		*/
 	}
+
+	void WakeUp(){
+		moveSpeed = 5;
+	}
+
+
+	void OnTriggerStay(Collider other){
+
+		if(other.CompareTag("Vampire")){
+			if(other.GetComponent<playerController>().player.GetButtonDown("Action1") && stunNum > 0 && moveSpeed > 0){
+				print ("stunned!");
+				stunNum--;
+				moveSpeed = 0;
+				Invoke ("WakeUp",2f);
+			}
+		}
+
+	}
+
 }
