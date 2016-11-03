@@ -25,8 +25,8 @@ public class objectHealthScript : MonoBehaviour {
 
 		if (objectBroken == true) {
 			//if player presses REPAIR BUTTON
-			if (other.tag == "Player" && Input.GetKeyDown (KeyCode.Space)) { //change this to interact button
-
+			if (other.tag == "Player" && other.GetComponent<playerController>().player.GetButtonDown("Action1")) { //change this to interact button
+				print("cool!");
 				objectHealth += repairAmount;
 				print ("Player hit space");
 				print ("Object Health: " + objectHealth);
