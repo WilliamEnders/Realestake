@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Rewired;
 
 public class playerController : MonoBehaviour {
+
+	public int playerId = 0;
+	public Player player;
 
 	public Rigidbody rb;
 	public float moveSpeed;
@@ -10,6 +14,12 @@ public class playerController : MonoBehaviour {
 	public Animator anim;
 
 	// Use this for initialization
+
+	void Awake(){
+
+		player = ReInput.players.GetPlayer(playerId);	
+	}
+
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		sr = GetComponent<SpriteRenderer> ();
@@ -18,30 +28,26 @@ public class playerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (Input.GetAxis ("Horizontal") < 0) {
-			sr.flipX = true;
-		}
-		if (Input.GetAxis ("Horizontal") > 0) {
-			sr.flipX = false;
-		}
-
-		Vector2 move = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")) * moveSpeed;
+		
+		Vector2 move = new Vector2 (player.GetAxis ("HorizontalMove"), player.GetAxis ("VerticalMove")) * moveSpeed;
 		Vector3 movement = new Vector3 (move.x, rb.velocity.y, move.y);
 		rb.velocity = movement;
 
-		if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0) {
-			anim.SetBool ("Walk", true);
-		}else if (Input.GetAxis ("Vertical") > 0 || Input.GetAxis ("Vertical") < 0) {
+		sr.flipX = move.x < 0;
+
+		if (move.x != 0 || move.y != 0) {
 			anim.SetBool ("Walk", true);
 		}else{ 
 			anim.SetBool ("Walk", false);
 		}
-		 
-		/*if (Input.GetKeyDown(KeyCode.Space)) {
+
+		 /*
+		if (player.GetButtonDown("Jump")) {
 			rb.AddForce (Vector3.up * jumpHeight);
 			anim.SetBool ("Jump", true);
 		} else {
 			anim.SetBool ("Jump", false);
-		}*/
+		}
+		*/
 	}
 }
