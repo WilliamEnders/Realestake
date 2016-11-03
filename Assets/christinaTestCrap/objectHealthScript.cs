@@ -66,6 +66,7 @@ public class objectHealthScript : MonoBehaviour {
 	public void BreakObject(){
 		objectBroken = true;
 		currentObjectHealth = 0;
+		ScoreController.houseHealth -= scoreValue;
 	}
 
 	void TempBrokenIndicator(){
