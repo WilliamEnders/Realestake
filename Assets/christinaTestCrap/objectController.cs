@@ -70,13 +70,13 @@ public class objectController : MonoBehaviour {
 					repairObj.GetComponent<objectHealthScript> ().BreakObject ();
 
 
-					Debug.Log ("object broken: " + randomNumber);
+					//Debug.Log ("object broken: " + randomNumber);
 
 					//exit loop ("break") if it is broken
 					break;
 
 				} else {
-					Debug.Log ("object skipped: " + randomNumber);
+					//Debug.Log ("object skipped: " + randomNumber);
 				}
 
 
