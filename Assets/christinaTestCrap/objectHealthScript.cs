@@ -28,11 +28,7 @@ public class objectHealthScript : MonoBehaviour {
 		if (objectBroken == true) {
 			//if player presses REPAIR BUTTON
 			if (other.tag == "Player" && other.GetComponent<playerController>().player.GetButtonDown("Action1")) { //change this to interact button
-				print("cool!");
 				currentObjectHealth += repairAmount;
-				print ("Player hit space");
-				print ("Object Health: " + currentObjectHealth);
-
 				//if objectHealth reaches 100% through repair, add to house score
 				if (currentObjectHealth > totalObjectHealth) {
 					objectBroken = false;
