@@ -54,19 +54,20 @@ public class playerController : MonoBehaviour {
 	void WakeUp(){
 		moveSpeed = 5;
 	}
-
-
+		
 	void OnTriggerStay(Collider other){
 
-		if(other.CompareTag("Vampire")){
-			if(other.GetComponent<playerController>().player.GetButtonDown("Action1") && stunNum > 0 && moveSpeed > 0){
+		if (other.CompareTag ("Vampire")) {
+			if (other.GetComponent<playerController> ().player.GetButtonDown ("Action1") && stunNum > 0 && moveSpeed > 0) {
 				print ("stunned!");
 				stunNum--;
 				moveSpeed = 0;
-				Invoke ("WakeUp",2f);
+				Invoke ("WakeUp", 2f);
 			}
 		}
-
+		if ((other.CompareTag("Tool")) && Input.GetKeyDown(KeyCode.JoystickButton16)) {
+			print ("pickup");
+			transform.parent = other.transform;
+		}
 	}
-
 }
