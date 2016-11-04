@@ -10,10 +10,13 @@ public class objectHealthScript : MonoBehaviour {
 	public float repairDelay; //amount of time before the player can hit the repair button again
 	public bool objectBroken; //is the object broken or not?
 	private float breakdownTimer; //start a timer to when the object is able to breakdown again
+	private bool nearObject;
+	private int playerCount;
+
 
 
 	void Start () {
-
+		playerCount = 0;
 	}
 	
 
@@ -21,47 +24,72 @@ public class objectHealthScript : MonoBehaviour {
 		//print ("Object is broken: " + objectBroken);
 		TempBrokenIndicator();
 
+
+
+		if (playerCount == 0) {
+			nearObject = false;
+		} else {
+			nearObject = true;
+		}
+
 	}
 
-	void OnTriggerStay(Collider other){
+	void OnTriggerEnter(Collider other){
 
-		if (objectBroken == true) {
-			//if player presses REPAIR BUTTON
-			if (other.tag == "Player" && other.GetComponent<playerController>().player.GetButtonDown("Action1")) { //change this to interact button
-				print("cool!");
-				currentObjectHealth += repairAmount;
-				print ("Player hit space");
-				print ("Object Health: " + currentObjectHealth);
 
-				//if objectHealth reaches 100% through repair, add to house score
-				if (currentObjectHealth > totalObjectHealth) {
-					objectBroken = false;
-					ScoreController.houseHealth += scoreValue;
-					//start breakdownTimer 
+		
+		if (other.tag == "Player"){
+			++playerCount;
+
+			if (objectBroken == true) {
+				//if player presses REPAIR BUTTON
+				if (other.GetComponent<playerController>().player.GetButtonDown("Action1")) { //change this to interact button
+					//print("cool!");
+					currentObjectHealth += repairAmount;
+					//print ("Player hit space");
+					//print ("Object Health: " + currentObjectHealth);
+
+					//if objectHealth reaches 100% through repair, add to house score
+					if (currentObjectHealth > totalObjectHealth) {
+						objectBroken = false;
+						ScoreController.houseHealth += scoreValue;
+						//start breakdownTimer 
+					}
 				}
 			}
 		}
 
-		if (objectBroken == false) {
+		if (other.tag == "Vampire") {
+			++playerCount;
 
-			//does vampire need to do anything to break objects?
-			if (other.tag == "Vampire" && other.GetComponent<playerController>().player.GetButtonDown("Action1")) {
+			if (objectBroken == false) {
 
-				currentObjectHealth -= repairAmount; //change this to a unique vampire variable?
+				//does vampire need to do anything to break objects?
+				if (other.GetComponent<playerController> ().player.GetButtonDown ("Action1")) {
 
-				//if objectHealth reaches 0, the object is broken
-				if (currentObjectHealth < totalObjectHealth) {
-					ScoreController.houseHealth -= scoreValue;
-				}
-				if(currentObjectHealth <= 0f){
-					BreakObject ();
+					currentObjectHealth -= repairAmount; //change this to a unique vampire variable?
+
+					//if objectHealth reaches 0, the object is broken
+					if (currentObjectHealth < totalObjectHealth) {
+						ScoreController.houseHealth -= scoreValue;
+					}
+					if (currentObjectHealth <= 0f) {
+						BreakObject ();
+					}
 				}
 			}
 		}
 
-
-	
+		Debug.Log ("Players near object = " + playerCount + "and nearObject is " + nearObject);
 	}
+
+	void OnTriggerExit(Collider other){
+		--playerCount;
+		Debug.Log ("Players near object = " + playerCount + "and nearObject is " + nearObject);
+	}
+
+
+
 
 	public void BreakObject(){
 		objectBroken = true;
