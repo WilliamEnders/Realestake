@@ -84,7 +84,15 @@ public class objectHealthScript : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider other){
-		--playerCount;
+
+		if (other.tag == "Vampire") {
+			--playerCount;
+		}
+
+		if (other.tag == "Player") {
+			--playerCount;
+		}
+
 		Debug.Log ("Players near object = " + playerCount + "and nearObject is " + nearObject);
 	}
 
