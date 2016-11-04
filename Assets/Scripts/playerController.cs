@@ -65,9 +65,9 @@ public class playerController : MonoBehaviour {
 				Invoke ("WakeUp", 2f);
 			}
 		}
-		if ((other.CompareTag("Tool")) && Input.GetKeyDown(KeyCode.JoystickButton16)) {
+		if ((other.CompareTag("tool")) && player.GetButtonDown("Action2")) {
 			print ("pickup");
-			transform.parent = other.transform;
+			other.transform.parent = transform;
 		}
 	}
 }
