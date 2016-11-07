@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour {
 	public float jumpHeight;
 	public SpriteRenderer sr;
 	public Animator anim;
+	public bool haveTool = false;
 
 	// Use this for initialization
 
@@ -68,6 +69,11 @@ public class playerController : MonoBehaviour {
 		if ((other.CompareTag("tool")) && player.GetButtonDown("Action2")) {
 			print ("pickup");
 			other.transform.parent = transform;
+			haveTool = true;
+		}
+		if ((haveTool = true) && player.GetButtonDown("Action3")) {
+			print ("tool drop");
+			other.transform.parent = null;
 		}
 	}
 }
