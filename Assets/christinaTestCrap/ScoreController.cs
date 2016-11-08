@@ -57,7 +57,7 @@ public class ScoreController : MonoBehaviour {
 
 	void UpdateScore ()
 	{
-		scoreText.text = "Score: " + houseHealth;
+		//scoreText.text = "Score: " + houseHealth;
 		healthBarSlider.value = houseHealth;
 	}
 
