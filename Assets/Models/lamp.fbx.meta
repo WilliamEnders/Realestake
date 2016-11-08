@@ -1,26 +1,18 @@
 fileFormatVersion: 2
-guid: d3d2fae80b0324fa8963dd994ee052d4
-timeCreated: 1478632095
+guid: c499483cd1cc8404a8c7b9c72c5126d8
+timeCreated: 1478633510
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
     100002: pCylinder1
-    100004: pCylinder2
-    100006: pCylinder3
-    100008: pCylinder4
-    100010: pCylinder5
-    100012: transform13
-    100014: transform14
+    100004: pCylinder3
+    100006: pCylinder5
     400000: //RootNode
     400002: pCylinder1
-    400004: pCylinder2
-    400006: pCylinder3
-    400008: pCylinder4
-    400010: pCylinder5
-    400012: transform13
-    400014: transform14
+    400004: pCylinder3
+    400006: pCylinder5
     2300000: pCylinder1
     2300002: pCylinder3
     2300004: pCylinder5
