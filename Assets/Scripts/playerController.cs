@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour {
 	public float jumpHeight;
 	public SpriteRenderer sr;
 	public Animator anim;
+	public bool haveTool = false;
 
 	// Use this for initialization
 
@@ -54,19 +55,25 @@ public class playerController : MonoBehaviour {
 	void WakeUp(){
 		moveSpeed = 5;
 	}
-
-
+		
 	void OnTriggerStay(Collider other){
 
-		if(other.CompareTag("Vampire")){
-			if(other.GetComponent<playerController>().player.GetButtonDown("Action1") && stunNum > 0 && moveSpeed > 0){
+		if (other.CompareTag ("Vampire")) {
+			if (other.GetComponent<playerController> ().player.GetButtonDown ("Action1") && stunNum > 0 && moveSpeed > 0) {
 				print ("stunned!");
 				stunNum--;
 				moveSpeed = 0;
-				Invoke ("WakeUp",2f);
+				Invoke ("WakeUp", 2f);
 			}
 		}
-
+		if ((other.CompareTag("tool")) && player.GetButtonDown("Action2")) {
+			print ("pickup");
+			other.transform.parent = transform;
+			haveTool = true;
+		}
+		if ((haveTool = true) && player.GetButtonDown("Action3")) {
+			print ("tool drop");
+			other.transform.parent = null;
+		}
 	}
-
 }
