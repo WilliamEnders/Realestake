@@ -11,16 +11,22 @@ public class ScoreController : MonoBehaviour {
 	private float timeLeft;
 	public float roundTime;
 	public float realtorWinAmount;
+	private bool isGameOver = false;
+	public Slider healthBarSlider; //health bar slider
+	public Image Fill; //the health bar's fill
 
 	void Start () {
 		UpdateScore ();
-		houseHealth = 50f;//housescore starts at 50
+		houseHealth = 75f;//housescore starts at 50
+		healthBarSlider.minValue = 0f;
+		healthBarSlider.maxValue = houseHealthCap;
 
 	}
 	
 
 	void Update () {
 		UpdateScore ();
+		HealthBarColors ();
 
 		timeLeft -= Time.deltaTime;
 		//print (timeLeft);
@@ -52,9 +58,22 @@ public class ScoreController : MonoBehaviour {
 	void UpdateScore ()
 	{
 		scoreText.text = "Score: " + houseHealth;
+		healthBarSlider.value = houseHealth;
+	}
+
+	void HealthBarColors(){
+		if (houseHealth > realtorWinAmount){
+			Fill.color = Color.green;
+		}
+
+		if (houseHealth <= realtorWinAmount){
+			Fill.color = Color.red;
+		}
 	}
 
 	void RoundEnd(){
+
+		isGameOver = true;
 
 		if (houseHealth > realtorWinAmount){
 			scoreText.text = "Round Over! Realtors Win!";
@@ -64,4 +83,6 @@ public class ScoreController : MonoBehaviour {
 			scoreText.text = "Round Over! Vampire Wins!";
 		}
 	}
+
+
 }
