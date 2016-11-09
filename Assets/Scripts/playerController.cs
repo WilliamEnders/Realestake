@@ -38,6 +38,7 @@ public class playerController : MonoBehaviour {
 
 		if (move.x != 0 || move.y != 0) {
 			anim.SetBool ("Walk", true);
+			//play walk sound; change based on outdoor/indoor?
 		}else{ 
 			anim.SetBool ("Walk", false);
 		}
@@ -61,6 +62,7 @@ public class playerController : MonoBehaviour {
 		if (other.CompareTag ("Vampire")) {
 			if (other.GetComponent<playerController> ().player.GetButtonDown ("Action1") && stunNum > 0 && moveSpeed > 0) {
 				print ("stunned!");
+				//play stun sound
 				stunNum--;
 				moveSpeed = 0;
 				Invoke ("WakeUp", 2f);
@@ -68,11 +70,13 @@ public class playerController : MonoBehaviour {
 		}
 		if ((other.CompareTag("tool")) && player.GetButtonDown("Action2")) {
 			print ("pickup");
+			//play pickup sound
 			other.transform.parent = transform;
 			haveTool = true;
 		}
 		if ((haveTool = true) && player.GetButtonDown("Action3")) {
 			print ("tool drop");
+			//play drop sound
 			other.transform.parent = null;
 		}
 	}
