@@ -25,15 +25,17 @@ public class ScoreController : MonoBehaviour {
 	
 
 	void Update () {
-		UpdateScore ();
-		HealthBarColors ();
+		if (isGameOver == false) {
+			UpdateScore ();
+			HealthBarColors ();
 
-		timeLeft -= Time.deltaTime;
-		//print (timeLeft);
-		if (timeLeft <= -roundTime) {
-			RoundEnd ();
-			//print ("Round Done!");
+			timeLeft -= Time.deltaTime;
+			//print (timeLeft);
+			if (timeLeft <= -roundTime) {
+				RoundEnd ();
+				//print ("Round Done!");
 
+			}
 		}
 
 		//housescore = 0-100; Cap it so can't collect higher or lower (feel free to remove for balance)
