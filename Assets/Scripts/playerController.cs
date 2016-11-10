@@ -6,13 +6,13 @@ public class playerController : MonoBehaviour {
 
 	public int playerId = 0;
 	public Player player;
-	public int stunNum;
 	public Rigidbody rb;
 	public float moveSpeed;
 	public float jumpHeight;
 	public SpriteRenderer sr;
 	public Animator anim;
 	public bool haveTool = false;
+	public bool canStun;
 
 	// Use this for initialization
 
@@ -22,6 +22,7 @@ public class playerController : MonoBehaviour {
 	}
 
 	void Start () {
+		canStun = true;
 		rb = GetComponent<Rigidbody> ();
 		sr = GetComponent<SpriteRenderer> ();
 		anim = GetComponent<Animator> ();
@@ -56,16 +57,20 @@ public class playerController : MonoBehaviour {
 	void WakeUp(){
 		moveSpeed = 5;
 	}
+	void CanStun(){
+		canStun = true;
+	}
 		
 	void OnTriggerStay(Collider other){
 
 		if (other.CompareTag ("Vampire")) {
-			if (other.GetComponent<playerController> ().player.GetButtonDown ("Action1") && stunNum > 0 && moveSpeed > 0) {
+			if (other.GetComponent<playerController> ().player.GetButtonDown ("Action1") && moveSpeed > 0 && canStun) {
 				print ("stunned!");
 				//play stun sound
-				stunNum--;
 				moveSpeed = 0;
-				Invoke ("WakeUp", 2f);
+				canStun = false;
+				Invoke ("WakeUp", 5f);
+				Invoke ("CanStun", 10f);
 			}
 		}
 		if ((other.CompareTag("tool")) && player.GetButtonDown("Action2")) {
