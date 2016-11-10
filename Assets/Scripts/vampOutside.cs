@@ -3,6 +3,8 @@ using System.Collections;
 
 public class vampOutside : MonoBehaviour {
 
+	public dayNightManager sun;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -13,7 +15,19 @@ public class vampOutside : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(){
-	
+	void OnTriggerEnter(Collider other){
+		if(other.CompareTag("Vampire") && sun.day){
+			other.GetComponent<playerController> ().moveSpeed = 0.5f;	
+		}
+	}
+	void OnTriggerStay(Collider other){
+		if(other.CompareTag("Vampire") && !sun.day){
+			other.GetComponent<playerController> ().moveSpeed = 5f;	
+		}
+	}
+	void OnTriggerExit(Collider other){
+		if(other.CompareTag("Vampire")){
+			other.GetComponent<playerController> ().moveSpeed = 5f;	
+		}
 	}
 }

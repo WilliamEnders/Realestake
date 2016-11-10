@@ -28,22 +28,13 @@ public class objectHealthScript : MonoBehaviour {
 		//print ("Object is broken: " + objectBroken);
 		TempBrokenIndicator();
 
-
-
-		if (playerCount == 0) {
-			nearObject = false;
-		} else {
-			nearObject = true;
-		}
-
 	}
 
-	void OnTriggerEnter(Collider other){
+	void OnTriggerStay(Collider other){
 
 
 		
 		if (other.tag == "Player"){
-			++playerCount;
 
 			if (objectBroken == true) {
 				//if player presses REPAIR BUTTON
@@ -67,7 +58,6 @@ public class objectHealthScript : MonoBehaviour {
 		}
 
 		if (other.tag == "Vampire") {
-			++playerCount;
 
 			if (objectBroken == false) {
 
@@ -90,23 +80,7 @@ public class objectHealthScript : MonoBehaviour {
 				}
 			}
 		}
-
-		Debug.Log ("Players near object = " + playerCount + "and nearObject is " + nearObject);
 	}
-
-	void OnTriggerExit(Collider other){
-
-		if (other.tag == "Vampire") {
-			--playerCount;
-		}
-
-		if (other.tag == "Player") {
-			--playerCount;
-		}
-
-		Debug.Log ("Players near object = " + playerCount + "and nearObject is " + nearObject);
-	}
-
 
 
 
