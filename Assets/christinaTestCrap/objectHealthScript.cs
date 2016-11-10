@@ -66,11 +66,12 @@ public class objectHealthScript : MonoBehaviour {
 
 					currentObjectHealth -= repairAmount; //change this to a unique vampire variable?
 					//play vampire "ehheh" sound
-					other.GetComponent<AudioSource>().Play();
+
 
 
 					//if object health 0 break
 					if (currentObjectHealth <= 0f) {
+						other.GetComponent<AudioSource>().Play();
 						BreakObject ();
 						ScoreController.houseHealth -= scoreValue;
 					}
