@@ -11,11 +11,13 @@ public class startGame : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = ReInput.players.GetPlayer(playerId);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(player.GetAnyButtonDown()){
+			GetComponent<AudioSource>().Play();
 			SceneManager.LoadScene (1);
 		}
 	}
