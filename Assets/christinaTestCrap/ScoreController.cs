@@ -18,7 +18,7 @@ public class ScoreController : MonoBehaviour {
 
 	void Start () {
 		UpdateScore ();
-		houseHealth = 75f;//housescore starts at 50
+		houseHealth = houseHealthCap;//housescore starts at 50
 		healthBarSlider.minValue = 0f;
 		healthBarSlider.maxValue = houseHealthCap;
 
@@ -73,6 +73,8 @@ public class ScoreController : MonoBehaviour {
 	}
 
 	void RoundEnd(){
+
+		Time.timeScale = 0;
 
 		isGameOver = true;
 		//play sound effect
