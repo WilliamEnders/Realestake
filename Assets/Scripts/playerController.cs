@@ -50,7 +50,7 @@ public class playerController : MonoBehaviour {
 
 		if (move.x != 0 || move.y != 0) {
 			anim.SetBool ("Walk", true);
-			audio.Play(walkIndoors);
+			//audio.Play(walkIndoors);
 
 			//play walk sound; change based on outdoor/indoor?
 
