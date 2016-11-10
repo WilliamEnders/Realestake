@@ -33,7 +33,6 @@ public class ScoreController : MonoBehaviour {
 			//print (timeLeft);
 			if (timeLeft <= -roundTime) {
 				RoundEnd ();
-				//print ("Round Done!");
 
 			}
 		}
@@ -47,7 +46,6 @@ public class ScoreController : MonoBehaviour {
 			houseHealth = 0f;
 		}
 
-		//win conditions?
 
 	}
 
