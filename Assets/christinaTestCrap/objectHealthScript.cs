@@ -73,7 +73,6 @@ public class objectHealthScript : MonoBehaviour {
 					if (currentObjectHealth <= 0f) {
 						other.GetComponent<AudioSource>().Play();
 						BreakObject ();
-						ScoreController.houseHealth -= scoreValue;
 					}
 				}
 			}

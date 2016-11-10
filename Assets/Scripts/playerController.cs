@@ -20,7 +20,7 @@ public class playerController : MonoBehaviour {
 	public AudioClip stunPlayer;
 	public AudioClip pickupTool;
 	public AudioClip dropTool;
-	AudioSource audio;
+	private AudioSource audio;
 
 
 	// Use this for initialization
