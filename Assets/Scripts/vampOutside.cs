@@ -22,12 +22,12 @@ public class vampOutside : MonoBehaviour {
 	}
 	void OnTriggerStay(Collider other){
 		if(other.CompareTag("Vampire") && !sun.day){
-			other.GetComponent<playerController> ().moveSpeed = 5f;	
+			other.GetComponent<playerController> ().moveSpeed = 5.5f;	
 		}
 	}
 	void OnTriggerExit(Collider other){
 		if(other.CompareTag("Vampire")){
-			other.GetComponent<playerController> ().moveSpeed = 5f;	
+			other.GetComponent<playerController> ().moveSpeed = 5.5f;	
 		}
 	}
 }

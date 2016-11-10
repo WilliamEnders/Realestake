@@ -16,7 +16,7 @@ public class dayNightManager : MonoBehaviour {
 		sun = GetComponent<Light> ();
 		dayRot = transform.localEulerAngles;
 		nightRot = Vector3.Reflect (dayRot, Vector3.right);
-		Invoke ("ChangeToDay",5f);
+		Invoke ("ChangeToDay",cycleTime);
 	}
 
 	// Update is called once per frame
