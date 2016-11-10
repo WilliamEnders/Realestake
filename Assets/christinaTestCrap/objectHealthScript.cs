@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+[RequireComponent(typeof(AudioSource))]
+
 
 public class objectHealthScript : MonoBehaviour {
 
@@ -17,6 +19,7 @@ public class objectHealthScript : MonoBehaviour {
 
 	void Start () {
 		playerCount = 0;
+
 	}
 	
 
@@ -46,6 +49,10 @@ public class objectHealthScript : MonoBehaviour {
 				if (other.GetComponent<playerController>().player.GetButtonDown("Action1")) { //change this to interact button
 					//print("cool!");
 					currentObjectHealth += repairAmount;
+					//play fix noise
+					other.GetComponent<AudioSource>().Play;
+
+
 					//print ("Player hit space");
 					//print ("Object Health: " + currentObjectHealth);
 
@@ -68,6 +75,10 @@ public class objectHealthScript : MonoBehaviour {
 				if (other.GetComponent<playerController> ().player.GetButtonDown ("Action1")) {
 
 					currentObjectHealth -= repairAmount; //change this to a unique vampire variable?
+					//play vampire "ehheh" sound
+					other.GetComponent<AudioSource>().Play;
+
+
 
 					//if objectHealth reaches 0, the object is broken
 					if (currentObjectHealth < totalObjectHealth) {
@@ -101,6 +112,8 @@ public class objectHealthScript : MonoBehaviour {
 
 	public void BreakObject(){
 		objectBroken = true;
+		//play break sound?
+		GetComponent<AudioSource>().Play;
 		currentObjectHealth = 0;
 		ScoreController.houseHealth -= scoreValue;
 	}
