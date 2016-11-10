@@ -69,13 +69,10 @@ public class objectHealthScript : MonoBehaviour {
 					other.GetComponent<AudioSource>().Play();
 
 
-
-					//if objectHealth reaches 0, the object is broken
-					if (currentObjectHealth < totalObjectHealth) {
-						ScoreController.houseHealth -= scoreValue;
-					}
+					//if object health 0 break
 					if (currentObjectHealth <= 0f) {
 						BreakObject ();
+						ScoreController.houseHealth -= scoreValue;
 					}
 				}
 			}
