@@ -15,6 +15,7 @@ public class ScoreController : MonoBehaviour {
 	public Slider healthBarSlider; //health bar slider
 	public Image Fill; //the health bar's fill
 
+
 	void Start () {
 		UpdateScore ();
 		houseHealth = 75f;//housescore starts at 50
@@ -33,7 +34,6 @@ public class ScoreController : MonoBehaviour {
 			//print (timeLeft);
 			if (timeLeft <= -roundTime) {
 				RoundEnd ();
-				//print ("Round Done!");
 
 			}
 		}
@@ -47,7 +47,6 @@ public class ScoreController : MonoBehaviour {
 			houseHealth = 0f;
 		}
 
-		//win conditions?
 
 	}
 
@@ -77,6 +76,8 @@ public class ScoreController : MonoBehaviour {
 
 		isGameOver = true;
 		//play sound effect
+		GetComponent<AudioSource>().Stop();
+
 
 		if (houseHealth > realtorWinAmount){
 			scoreText.text = "Round Over! Realtors Win!";

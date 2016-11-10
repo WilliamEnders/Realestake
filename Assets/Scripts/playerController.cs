@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Rewired;
+[RequireComponent(typeof(AudioSource))]
 
 public class playerController : MonoBehaviour {
 
@@ -14,6 +15,14 @@ public class playerController : MonoBehaviour {
 	public bool haveTool = false;
 	public bool canStun;
 
+	public AudioClip walkIndoors;
+	public AudioClip walkOutdoors;
+	public AudioClip stunPlayer;
+	public AudioClip pickupTool;
+	public AudioClip dropTool;
+	AudioSource audio;
+
+
 	// Use this for initialization
 
 	void Awake(){
@@ -26,6 +35,8 @@ public class playerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		sr = GetComponent<SpriteRenderer> ();
 		anim = GetComponent<Animator> ();
+		audio = GetComponent<AudioSource>();
+
 	}
 	
 	// Update is called once per frame
@@ -39,7 +50,10 @@ public class playerController : MonoBehaviour {
 
 		if (move.x != 0 || move.y != 0) {
 			anim.SetBool ("Walk", true);
+			//audio.Play(walkIndoors);
+
 			//play walk sound; change based on outdoor/indoor?
+
 		}else{ 
 			anim.SetBool ("Walk", false);
 		}
@@ -66,7 +80,7 @@ public class playerController : MonoBehaviour {
 		if (other.CompareTag ("Vampire")) {
 			if (other.GetComponent<playerController> ().player.GetButtonDown ("Action1") && moveSpeed > 0 && canStun) {
 				print ("stunned!");
-				//play stun sound
+				audio.PlayOneShot(stunPlayer);
 				moveSpeed = 0;
 				canStun = false;
 				Invoke ("WakeUp", 5f);
@@ -76,12 +90,13 @@ public class playerController : MonoBehaviour {
 		if ((other.CompareTag("tool")) && player.GetButtonDown("Action2")) {
 			print ("pickup");
 			//play pickup sound
+			audio.PlayOneShot(pickupTool);
 			other.transform.parent = transform;
 			haveTool = true;
 		}
 		if ((haveTool = true) && player.GetButtonDown("Action3")) {
 			print ("tool drop");
-			//play drop sound
+			audio.PlayOneShot(dropTool);
 			other.transform.parent = null;
 		}
 	}
