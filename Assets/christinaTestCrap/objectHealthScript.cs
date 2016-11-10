@@ -17,6 +17,7 @@ public class objectHealthScript : MonoBehaviour {
 
 
 
+
 	void Start () {
 		playerCount = 0;
 
@@ -50,8 +51,7 @@ public class objectHealthScript : MonoBehaviour {
 					//print("cool!");
 					currentObjectHealth += repairAmount;
 					//play fix noise
-					other.GetComponent<AudioSource>().Play;
-
+					other.GetComponent<AudioSource> ().Play ();
 
 					//print ("Player hit space");
 					//print ("Object Health: " + currentObjectHealth);
@@ -76,7 +76,7 @@ public class objectHealthScript : MonoBehaviour {
 
 					currentObjectHealth -= repairAmount; //change this to a unique vampire variable?
 					//play vampire "ehheh" sound
-					other.GetComponent<AudioSource>().Play;
+					other.GetComponent<AudioSource>().Play();
 
 
 
@@ -113,7 +113,7 @@ public class objectHealthScript : MonoBehaviour {
 	public void BreakObject(){
 		objectBroken = true;
 		//play break sound?
-		GetComponent<AudioSource>().Play;
+		GetComponent<AudioSource>().Play();
 		currentObjectHealth = 0;
 		ScoreController.houseHealth -= scoreValue;
 	}
